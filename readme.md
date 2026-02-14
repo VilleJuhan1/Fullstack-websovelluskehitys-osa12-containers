@@ -4,4 +4,4 @@ This repository contains my course submissions for the course.
 
 ## Progress
 
-[******----------------] 6/22
+[*******---------------] 7/22
