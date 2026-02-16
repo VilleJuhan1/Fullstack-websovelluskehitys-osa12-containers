@@ -13,9 +13,22 @@ router.post('/', async (req, res) => {
   const todo = await Todo.create({
     text: req.body.text,
     done: false
-  })
+  });
+
+  let count = await redis.getAsync("todo_count");
+
+  if (!count) {
+    // Key does not exist yet
+    count = 1;
+  } else {
+    count = parseInt(count) + 1;
+  }
+
+  await redis.setAsync("todo_count", count);
+
   res.send(todo);
 });
+
 
 const singleRouter = express.Router();
 
