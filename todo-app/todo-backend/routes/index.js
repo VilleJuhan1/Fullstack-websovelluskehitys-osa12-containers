@@ -4,15 +4,22 @@ const redis = require('../redis')
 
 const configs = require('../util/config')
 
-let visits = 0
-
 /* GET index data. */
 router.get('/', async (req, res) => {
-  visits++
+  let count = await redis.getAsync("visits_count");
+
+  if (!count) {
+    // Key does not exist yet
+    count = 1;
+  } else {
+    count = parseInt(count) + 1;
+  }
+
+  await redis.setAsync("visits_count", count);
 
   res.send({
     ...configs,
-    visits
+    visits: count
   });
 });
 
