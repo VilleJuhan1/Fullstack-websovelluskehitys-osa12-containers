@@ -8,6 +8,7 @@ const statisticsRouter = require('./routes/statistics')
 
 const app = express();
 
+// small change to test development with Vite in container, ignore
 app.use(cors());
 
 app.use(logger('dev'));

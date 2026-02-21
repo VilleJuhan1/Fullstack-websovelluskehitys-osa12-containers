@@ -10,3 +10,5 @@ services:
       - 5173:5173
     container_name: part12-todo-front-dev
     command: sh -c "npm install && npm run dev -- --host" # Replace the default command with added npm install and --host for Vite
+  debug-helper:
+    image: busybox
