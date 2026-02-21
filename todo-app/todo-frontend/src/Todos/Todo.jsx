@@ -10,6 +10,7 @@ const Todo = ({ todo, onDelete, onComplete }) => {
     </>
   )
 
+  // test comment for development/vite in container
   const notDoneInfo = (
     <>
       <span>This todo is not done</span>
