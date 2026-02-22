@@ -4,8 +4,8 @@ services:
     image: part12-todo-front-dev
     volumes:
       - ./todo-frontend/:/usr/src/app
-    ports:
-      - 5173:5173
+    #ports:
+    #  - 5173:5173
     container_name: part12-todo-front-dev
     environment:
       VITE_BACKEND_URL: http://localhost:8080/api # Use reverse proxy for API calls
@@ -28,8 +28,8 @@ services:
     build: 
       context: . # The context will pick this directory as the "build context"
       dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
-    ports: 
-      - 3000:3000
+    #ports: 
+    #  - 3000:3000
     volumes:
       - ./todo-backend/:/usr/src/app
     container_name: part12-todo-backend-dev 
@@ -39,8 +39,8 @@ services:
       REDIS_URL: redis://redis:6379
   mongo:
     image: mongo
-    ports:
-      - 3456:27017
+    #ports:
+    #  - 3456:27017
     # environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
@@ -50,8 +50,8 @@ services:
       - ./todo-backend/mongo_data:/data/db
   redis:
     image: redis
-    ports:
-      - 6379:6379
+    #ports:
+    #  - 6379:6379
     command: ['redis-server', '--appendonly', 'yes'] # Overwrite the CMD
     volumes: # Declare the volume
       - ./todo-backend/redis_data:/data
