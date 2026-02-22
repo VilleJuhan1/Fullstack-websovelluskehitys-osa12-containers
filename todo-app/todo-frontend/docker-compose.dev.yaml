@@ -12,3 +12,12 @@ services:
     command: sh -c "npm install && npm run dev -- --host" # Replace the default command with added npm install and --host for Vite
   debug-helper:
     image: busybox
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - app # wait for the frontend container to be started

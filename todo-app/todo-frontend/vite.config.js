@@ -7,6 +7,7 @@ export default defineConfig({
 // This is required for the Vite to acknowledge the changes in the current setup
   server: {
     host: true,
+    allowedHosts: ['app'],
     watch: {
       usePolling: true,
     },

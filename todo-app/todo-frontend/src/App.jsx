@@ -10,4 +10,6 @@ function App() {
   );
 }
 
+// Mock comment to test development/vite in container
+
 export default App;
