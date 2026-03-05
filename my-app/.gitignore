@@ -6,3 +6,4 @@ frontend/dist
 frontend/.vite
 backend/dist
 flag-game-frontend
+package-lock.json

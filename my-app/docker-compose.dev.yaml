@@ -4,8 +4,6 @@ services:
     build: 
       context: ./backend # The context will pick this directory as the "build context"
       dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
-    #ports: 
-    #  - 3001:3001
     volumes:
       - ./backend/:/usr/src/app
     container_name: part12-my-app-backend-dev 
@@ -14,14 +12,11 @@ services:
     image: part12-my-app-frontend:dev
     volumes:
       - ./frontend/:/usr/src/app
-    #ports:
-    #  - 5173:5173
     container_name: part12-my-app-frontend-dev
-    #environment:
-    #  VITE_BACKEND_URL: http://flag-game-backend-development:3001/api # Use reverse proxy for API calls
     command: sh -c "npm install && npm run dev -- --host" # Replace the default command with added npm install and --host for Vite
     depends_on:
       - flag-game-backend-development # wait for the backend container to be started
+  # Reverse proxy for development
   nginx:
     image: nginx:1.20.1
     volumes:
