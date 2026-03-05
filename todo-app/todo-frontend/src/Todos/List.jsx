@@ -1,5 +1,4 @@
 import React from 'react'
-import Todo from './Todo'
 
 const TodoList = ({ todos, deleteTodo, completeTodo }) => {
   const onClickDelete = (todo) => () => {
@@ -11,28 +10,39 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
   }
 
   return (
-    <div style={{ marginTop: '1rem' }}>
-      {todos.flatMap((todo, i) =>
-        i === 0
-          ? [
-              <Todo
-                key={todo._id}
-                todo={todo}
-                onDelete={onClickDelete(todo)}
-                onComplete={onClickComplete(todo)}
-              />
-            ]
-          : [
-              <hr key={`sep-${todo._id}`} />,
-              <Todo
-                key={todo._id}
-                todo={todo}
-                onDelete={onClickDelete(todo)}
-                onComplete={onClickComplete(todo)}
-              />
-            ]
-      )}
-    </div>
+    <>
+      {todos.map(todo => {
+        const doneInfo = (
+          <>
+            <span>This todo is done</span>
+            <span>
+              <button onClick={onClickDelete(todo)}> Delete </button>
+            </span>
+          </>
+        )
+
+        const notDoneInfo = (
+          <>
+            <span>
+              This todo is not done
+            </span>
+            <span>
+              <button onClick={onClickDelete(todo)}> Delete </button>
+              <button onClick={onClickComplete(todo)}> Set as done </button>
+            </span>
+          </>
+        )
+
+        return (
+          <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }}>
+            <span>
+              {todo.text} 
+            </span>
+            {todo.done ? doneInfo : notDoneInfo}
+          </div>
+        )
+      }).reduce((acc, cur) => [...acc, <hr />, cur], [])}
+    </>
   )
 }
 

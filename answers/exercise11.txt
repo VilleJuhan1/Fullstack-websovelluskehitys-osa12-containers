@@ -1,0 +1,27 @@
+~/Koodaus/FullStack2026/part-12-containers-applications/todo-app/todo-backend % docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                           NAMES
+9e96aebf8a02   mongo     "docker-entrypoint.s…"   21 minutes ago   Up 21 minutes   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+1d5974ccf90d   redis     "docker-entrypoint.s…"   21 minutes ago   Up 21 minutes   0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp     todo-backend-redis-1
+~/Koodaus/FullStack2026/part-12-containers-applications/todo-app/todo-backend % docker exec -it todo-backend-redis-1 /bin/sh
+# redis-cli
+127.0.0.1:6379> KEYS *
+1) "todo_count"
+127.0.0.1:6379> GET todo_count
+"4"
+127.0.0.1:6379> SET todo_count 9001
+OK
+127.0.0.1:6379> SET todo_count 9001 value [NX|XX|IFEQ ifeq-value|IFNE ifne-value|IFDEQ ifdeq-digest|IFDNE ifdne-digest] [GET] [EX seconds|PX mi
+127.0.0.1:6379> GET todo_count
+"9002"
+127.0.0.1:6379> DEL todo_count
+(integer) 1
+127.0.0.1:6379> KEYS *
+(empty array)
+127.0.0.1:6379> KEYS *
+(empty array)
+127.0.0.1:6379> KEYS *
+1) "todo_count"
+127.0.0.1:6379> GET todo_count
+"6"
+127.0.0.1:6379> GET todo_count
+"7"

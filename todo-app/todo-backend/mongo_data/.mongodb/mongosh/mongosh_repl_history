@@ -1,0 +1,10 @@
+db.todos.find ({})
+db.todos.insertOne({ text: "Increase the number of tools in my tool belt", done: false })
+db.todos.find ({})
+db.todos.insertOne({ text: "Inject something into the DB", done: true })
+db.todos.find ({})
+show collections
+use the_database
+show dbs
+exit
+db.createUser({ user: "root", pwd: "example", roles: [{ role: 'root', db: "admin" }] })

@@ -1,0 +1,130 @@
+~/Koodaus/FullStack2026/part-12-containers-applications % docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED        STATUS        PORTS                                           NAMES
+6f2cb3946e31   mongo     "docker-entrypoint.s…"   22 hours ago   Up 22 hours   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+~/Koodaus/FullStack2026/part-12-containers-applications % docker exec -it todo-backend-mongo-1 /bin/sh
+# 
+# 
+# whoami
+root
+# pwd
+/
+# show dbs
+/bin/sh: 5: show: not found
+# mongosh
+Current Mongosh Log ID: 6991627eb1f37406fc284d0b
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.6.0
+Using MongoDB:          undefined
+Using Mongosh:          2.6.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+test> exit
+# mongosh -u the_username -p the_password
+Current Mongosh Log ID: 699162a54451b7bb2d284d0b
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.6.0
+MongoServerError: Authentication failed.
+# mongosh -u the_username -p the_password --authenticationDatabase the_database
+Current Mongosh Log ID: 699162f16d39da63aa284d0b
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=the_database&appName=mongosh+2.6.0
+Using MongoDB:          8.2.5
+Using Mongosh:          2.6.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+test> show dbs
+the_database  40.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find ({})
+[
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0c'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0d'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+the_database> db.todos.insertOne({ text: "Inject something into the DB", done: true })
+{
+  acknowledged: true,
+  insertedId: ObjectId('699163aa6d39da63aa284d0c')
+}
+the_database> db.todos.find ({})
+[
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0c'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0d'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('699163aa6d39da63aa284d0c'),
+    text: 'Inject something into the DB',
+    done: true
+  }
+]
+the_database> db.todos.insertOne({ text: "Inject something into the DB", done: true })
+{
+  acknowledged: true,
+  insertedId: ObjectId('699163aa6d39da63aa284d0c')
+}
+the_database> db.todos.find ({})
+[
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0c'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0d'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('699163aa6d39da63aa284d0c'),
+    text: 'Inject something into the DB',
+    done: true
+  }
+]
+the_database> db.todos.insertOne({ text: "Increase the number of tools in my tool belt", done: false })
+{
+  acknowledged: true,
+  insertedId: ObjectId('699164396d39da63aa284d0d')
+}
+the_database> db.todos.find ({})
+[
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0c'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('6990291a9f378eaff3284d0d'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('699163aa6d39da63aa284d0c'),
+    text: 'Inject something into the DB',
+    done: true
+  },
+  {
+    _id: ObjectId('699164396d39da63aa284d0d'),
+    text: 'Increase the number of tools in my tool belt',
+    done: false
+  }
+]
