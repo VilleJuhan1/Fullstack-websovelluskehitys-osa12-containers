@@ -15,12 +15,14 @@ export default function App() {
     streak: 0
   });
 
+  // Test comment for watch
+  const API_BASE = import.meta.env.VITE_API_BASE || "";
   // Fetch the list of countries once on load.
   useEffect(() => {
     let active = true;
     async function load() {
       try {
-        const response = await fetch("/api/countries");
+        const response = await fetch(`${API_BASE}/api/countries`);
         if (!response.ok) {
           throw new Error("Failed to fetch countries");
         }

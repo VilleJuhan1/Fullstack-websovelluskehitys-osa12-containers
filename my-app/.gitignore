@@ -5,3 +5,4 @@ package-lock.json
 frontend/dist
 frontend/.vite
 backend/dist
+flag-game-frontend
