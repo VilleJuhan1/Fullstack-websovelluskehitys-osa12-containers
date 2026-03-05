@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev:frontend": "npm -w frontend run dev",
-    "dev:backend": "npm -w backend run dev",
+    "dev:backend": "nodemon -w backend",
     "build:frontend": "npm -w frontend run build",
     "build": "npm run build:frontend",
     "start:backend": "npm -w backend run start",

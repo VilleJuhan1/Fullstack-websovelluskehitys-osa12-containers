@@ -1,0 +1,12 @@
+services:
+  flag-game-backend-development:
+    image: part12-my-app-backend:dev # Declares which image to use
+    build: 
+      context: ./backend # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    ports: 
+      - 3001:3001
+    volumes:
+      - ./backend/:/usr/src/app
+    container_name: part12-my-app-backend-dev 
+    command: sh -c "npm install && npm run dev -- --host"
