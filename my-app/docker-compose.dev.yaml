@@ -1,9 +1,9 @@
 services:
   flag-game-backend-development:
-    image: part12-my-app-backend:dev # Declares which image to use
+    image: part12-my-app-backend:dev
     build: 
-      context: ./backend # The context will pick this directory as the "build context"
-      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+      context: ./backend
+      dockerfile: dev.Dockerfile
     volumes:
       - ./backend/:/usr/src/app
     container_name: part12-my-app-backend-dev 
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./frontend/:/usr/src/app
     container_name: part12-my-app-frontend-dev
-    command: sh -c "npm install && npm run dev -- --host" # Replace the default command with added npm install and --host for Vite
+    command: sh -c "npm install && npm run dev -- --host"
     depends_on:
       - flag-game-backend-development # wait for the backend container to be started
   # Reverse proxy for development

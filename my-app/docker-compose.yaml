@@ -1,0 +1,22 @@
+services:
+  flag-game-backend-production:
+    image: part12-my-app-backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: part12-my-app-backend-production
+  flag-game-frontend-production:
+    image: part12-my-app-frontend
+    container_name: part12-my-app-frontend-production
+    depends_on:
+      - flag-game-backend-production # wait for the backend container to be started
+  # Reverse proxy for development
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - flag-game-frontend-production # wait for the frontend container to be started

@@ -4,4 +4,4 @@ This repository contains my course submissions for the Fullstack web development
 
 ## Progress
 
-[*********************-] 21/22
+[**********************] 22/22
