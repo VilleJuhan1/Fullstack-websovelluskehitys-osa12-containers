@@ -1,7 +1,7 @@
 # 12.17 new docker-compose.dev.yaml for development with Vite in container
 services:
   app:
-    image: todo-frontend
+    image: todo-front
     container_name: todo-frontend
     build:
       context: ./todo-frontend
